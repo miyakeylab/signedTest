@@ -1,4 +1,6 @@
 <?php
+use Illuminate\Support\Facades\URL;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,5 +14,18 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $url = URL::temporarySignedRoute(
+    'unsubscribe', now()->addSeconds(5), ['user' => 1]);
+    return view('welcome')->with('myUrl',$url);
 });
+
+
+
+Route::get('/unsubscribe/{user}', function (Request $request) {
+    if (! $request->hasValidSignature()) {
+        abort(403);
+    }
+    return view('safe');
+
+    // ...
+})->name('unsubscribe');

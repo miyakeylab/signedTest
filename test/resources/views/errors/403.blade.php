@@ -79,10 +79,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    test
+                    403
                 </div>
-                <a href="{{ $myUrl }}">{{ $myUrl }}</a>
-
             </div>
         </div>
     </body>
