@@ -16,6 +16,9 @@ use Illuminate\Http\Request;
 Route::get('/', function () {
     $url = URL::temporarySignedRoute(
     'unsubscribe', now()->addSeconds(5), ['user' => 1]);
+    Log::channel('slack')->info('Something happened!');
+    
+    Log::channel('slack')->critical('Something happened!');
     return view('welcome')->with('myUrl',$url);
 });
 
